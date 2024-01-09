@@ -54,6 +54,8 @@ def send_text(message):
 
         bot.clear_step_handler_by_chat_id(user_id)
         bot.register_next_step_handler(take_new_request, get_new_request)
+        status = 'user'
+        bot.register_next_step_handler(take_new_request, get_additional_message, user_id, status)
 
         # elif message.text == '✉️ Мои запросы':
         #     markup_and_value = markup.markup_reqs(user_id, 'my_reqs', '1')
