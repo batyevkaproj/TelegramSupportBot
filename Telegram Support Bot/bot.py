@@ -50,7 +50,6 @@ def send_text(message):
     # value = markup_and_value[1]
     reqs = core.my_reqs(1, user_id)
     print(reqs)
-
     if not reqs:
         take_new_request = bot.send_message(user_id, 'Введите свой запрос и наши сотрудники скоро с вами свяжутся.', reply_markup=markup.markup_cancel())
 
@@ -196,9 +195,10 @@ def get_additional_message(message, req_id, status):
             else:
                 text = '✅ Ваш файл успешно отправлен!'
         else:
-            text = '✅ Ваше сообщение успешно отправлено!'
+            text = ''
         
-        bot.send_message(message.chat.id, text, reply_markup=markup.markup_main())
+        if text:
+            bot.send_message(message.chat.id, text, reply_markup=markup.markup_main())
 
         if status == 'agent':
             user_id = core.get_user_id_of_req(req_id)
