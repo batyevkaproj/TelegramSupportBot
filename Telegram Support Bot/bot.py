@@ -45,24 +45,29 @@ def admin(message):
 def send_text(message):
     user_id = message.from_user.id
 
-    if message.text == '✏️ Написать запрос':
-        take_new_request = bot.send_message(message.chat.id, 'Введите свой запрос и наши сотрудники скоро с вами свяжутся.', reply_markup=markup.markup_cancel())
+    markup_and_value = markup.markup_reqs(user_id, 'my_reqs', '1')
+    markup_req = markup_and_value[0]
+    value = markup_and_value[1]
 
-        bot.clear_step_handler_by_chat_id(message.chat.id)
+    if not value:
+        take_new_request = bot.send_message(user_id, 'Введите свой запрос и наши сотрудники скоро с вами свяжутся.', reply_markup=markup.markup_cancel())
+
+        bot.clear_step_handler_by_chat_id(user_id)
         bot.register_next_step_handler(take_new_request, get_new_request)
 
-    elif message.text == '✉️ Мои запросы':
-        markup_and_value = markup.markup_reqs(user_id, 'my_reqs', '1')
-        markup_req = markup_and_value[0]
-        value = markup_and_value[1]
+        # elif message.text == '✉️ Мои запросы':
+        #     markup_and_value = markup.markup_reqs(user_id, 'my_reqs', '1')
+        #     markup_req = markup_and_value[0]
+        #     value = markup_and_value[1]
 
-        if value == 0:
-            bot.send_message(message.chat.id, 'У вас пока ещё нет запросов.', reply_markup=markup.markup_main())
-        else:
-            bot.send_message(message.chat.id, 'Ваши запросы:', reply_markup=markup_req)
+        #     if value == 0:
+        #         bot.send_message(message.chat.id, 'У вас пока ещё нет запросов.', reply_markup=markup.markup_main())
+        #     else:
+        #         bot.send_message(message.chat.id, 'Ваши запросы:', reply_markup=markup_req)
     
-    else:
-        bot.send_message(message.chat.id, 'hello world, cruel world.', parse_mode='html', reply_markup=markup.markup_main())
+    bot.send_message(message.chat.id, 'hello world, cruel world.', parse_mode='html', reply_markup=markup.markup_main())
+    status = 'wait'
+    bot.register_next_step_handler(take_additional_message, get_additional_message, user_id, status)
 
 
 def get_password_message(message):
@@ -133,8 +138,8 @@ def get_new_request(message):
         else:
             req_id = core.new_req(user_id, request)
             core.add_file(req_id, file_id, file_name, type)
-
-            bot.send_message(message.chat.id, f'✅ Ваш запрос под ID {req_id} создан. Посмотреть текущие запросы можно нажав кнопку <b>Мои текущие запросы</b>', parse_mode='html', reply_markup=markup.markup_main())        
+            
+            # bot.send_message(message.chat.id, f'✅ Ваш запрос под ID {req_id} создан. Посмотреть текущие запросы можно нажав кнопку <b>Мои текущие запросы</b>', parse_mode='html', reply_markup=markup.markup_main())        
     
     #Если пользователь отправляет только текст
     else:
