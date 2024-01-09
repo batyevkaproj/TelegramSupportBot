@@ -48,9 +48,7 @@ def send_text(message):
     # markup_and_value = markup.markup_reqs(user_id, 'my_reqs', '1')
     # markup_req = markup_and_value[0]
     # value = markup_and_value[1]
-
     reqs = core.my_reqs(1, user_id)
-
     print(reqs)
 
     if not reqs:
@@ -71,9 +69,9 @@ def send_text(message):
         #     else:
         #         bot.send_message(message.chat.id, 'Ваши запросы:', reply_markup=markup_req)
     
-    take_additional_message = bot.send_message(message.chat.id, 'hello world, cruel world.', parse_mode='html', reply_markup=markup.markup_main())
+    # take_additional_message = bot.send_message(message.chat.id, 'hello world, cruel world.', parse_mode='html', reply_markup=markup.markup_main())
     status = 'user'
-    bot.register_next_step_handler(take_additional_message, get_additional_message, user_id, status)
+    bot.register_next_step_handler(get_additional_message, user_id, status)
 
 
 def get_password_message(message):
