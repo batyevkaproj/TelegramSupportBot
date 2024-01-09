@@ -43,7 +43,7 @@ def new_req(user_id, request):
     date_now = dt.strftime('%d.%m.%Y %H:%M:%S')
 
     #Добавить сообщение для запроса
-    cur.execute(f"INSERT INTO messages (`req_id`, `message`, `user_status`, `date`) VALUES ('{req_id}', '{request}', 'user', '{date_now}')")
+    cur.execute(f"INSERT INTO messages (`req_id`, `message`, `user_status`, `date`) VALUES ('{user_id}', '{request}', 'user', '{date_now}')")
 
     con.commit()
 
