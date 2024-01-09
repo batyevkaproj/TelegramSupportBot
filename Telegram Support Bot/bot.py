@@ -71,7 +71,7 @@ def send_text(message):
     
     # take_additional_message = bot.send_message(message.chat.id, 'hello world, cruel world.', parse_mode='html', reply_markup=markup.markup_main())
     status = 'user'
-    bot.register_next_step_handler_by_chat_id(user_id, get_additional_message, user_id, status)
+    get_additional_message()
 
 
 def get_password_message(message):
