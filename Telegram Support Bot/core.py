@@ -34,7 +34,7 @@ def new_req(user_id, request):
     cur = con.cursor()
 
     #Добавить запрос в БД
-    cur.execute(f"INSERT INTO requests (`user_id`, `req_status`) VALUES ('{user_id}', 'waiting')") 
+    cur.execute(f"INSERT INTO requests (`user_id`, `req_status`) VALUES ('{user_id}', 'waiting')")
 
     #Получить айди добавленного запроса
     req_id = cur.lastrowid
@@ -43,7 +43,7 @@ def new_req(user_id, request):
     date_now = dt.strftime('%d.%m.%Y %H:%M:%S')
 
     #Добавить сообщение для запроса
-    cur.execute(f"INSERT INTO messages (`req_id`, `message`, `user_status`, `date`) VALUES ('{user_id}', '{request}', 'user', '{date_now}')")
+    cur.execute(f"INSERT INTO messages (`req_id`, `message`, `user_status`, `date`) VALUES ('{req_id}', '{request}', 'user', '{date_now}')")
 
     con.commit()
 
@@ -215,6 +215,7 @@ def get_user_id_of_req(req_id):
     cur.close()
     con.close()
 
+    
     return user_id
 
 
