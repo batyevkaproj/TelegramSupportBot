@@ -33,8 +33,8 @@ def page(markup, number, list, call, callback_cancel):
 
 def markup_main():
     markup_main = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    item1 = types.KeyboardButton("✏️ Написать запрос")
-    item2 = types.KeyboardButton("✉️ Мои запросы")
+    item1 = types.KeyboardButton("✏️ Оплата")
+    item2 = types.KeyboardButton("✉️ Сайт")
     markup_main.row(item1)
     markup_main.row(item2)
 
@@ -102,6 +102,7 @@ def markup_reqs(user_id, callback, number):
     markup_my_reqs = page(markup_my_reqs, number, reqs, callback, callback_cancel)
 
     return markup_my_reqs, len(reqs)
+
 
 
 def markup_request_action(req_id, req_status, callback):
