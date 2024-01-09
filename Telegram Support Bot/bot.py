@@ -45,9 +45,13 @@ def admin(message):
 def send_text(message):
     user_id = message.from_user.id
 
-    markup_and_value = markup.markup_reqs(user_id, 'my_reqs', '1')
-    markup_req = markup_and_value[0]
-    value = markup_and_value[1]
+    # markup_and_value = markup.markup_reqs(user_id, 'my_reqs', '1')
+    # markup_req = markup_and_value[0]
+    # value = markup_and_value[1]
+
+    reqs = core.my_reqs(1, user_id)
+
+    print(reqs)
 
     if not value:
         take_new_request = bot.send_message(user_id, 'Введите свой запрос и наши сотрудники скоро с вами свяжутся.', reply_markup=markup.markup_cancel())
