@@ -45,6 +45,17 @@ def admin(message):
 def send_text(message):
     user_id = message.from_user.id
 
+    if message.text == '✏️ Оплата':
+        print("pay")
+
+    if message.text == '✉️ Сайт':
+        print("site")
+
+        try:
+            all_request_history = json.load(open('requests.json'))
+        except:
+            all_request_history = []
+
     # markup_and_value = markup.markup_reqs(user_id, 'my_reqs', '1')
     # markup_req = markup_and_value[0]
     # value = markup_and_value[1]
@@ -162,7 +173,7 @@ def get_new_request(message):
 
         else:
             req_id = core.new_req(user_id, request)
-            bot.send_message(message.chat.id, f'✅ Ваш запрос под ID {req_id} создан. Посмотреть текущие запросы можно нажав кнопку <b>Мои текущие запросы</b>', parse_mode='html', reply_markup=markup.markup_main())
+            bot.send_message(message.chat.id, f'✅ Ваш запрос под ID {req_id} создан. Опишите вашу ситуацию более подробно в данном чате, наш оператор в скором времени свяжеться с вами</b>', parse_mode='html', reply_markup=markup.markup_main())
 
 
 def get_additional_message(message, req_id, status):
