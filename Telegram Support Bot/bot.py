@@ -49,6 +49,9 @@ def send_text(message):
     # markup_req = markup_and_value[0]
     # value = markup_and_value[1]
     reqs = core.my_reqs(1, user_id)
+
+    for item in reqs:
+        print(item[0])  # Output: (11, 'waiting')
     print(type(reqs))
     print(reqs)
     if not reqs:
