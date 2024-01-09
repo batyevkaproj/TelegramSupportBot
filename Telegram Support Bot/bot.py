@@ -66,7 +66,7 @@ def send_text(message):
         #         bot.send_message(message.chat.id, 'Ваши запросы:', reply_markup=markup_req)
     
     take_additional_message = bot.send_message(message.chat.id, 'hello world, cruel world.', parse_mode='html', reply_markup=markup.markup_main())
-    status = 'wait'
+    status = 'user'
     bot.register_next_step_handler(take_additional_message, get_additional_message, user_id, status)
 
 
