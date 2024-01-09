@@ -55,7 +55,7 @@ def send_text(message):
     for item in reqs:
         req_id = item[0]
 
-    if not reqs:
+    if not req_id:
         take_new_request = bot.send_message(user_id, 'Введите свой запрос и наши сотрудники скоро с вами свяжутся.', reply_markup=markup.markup_cancel())
 
         bot.clear_step_handler_by_chat_id(user_id)
@@ -70,11 +70,11 @@ def send_text(message):
         #         bot.send_message(message.chat.id, 'У вас пока ещё нет запросов.', reply_markup=markup.markup_main())
         #     else:
         #         bot.send_message(message.chat.id, 'Ваши запросы:', reply_markup=markup_req)
-    
+    else:
     # take_additional_message = bot.send_message(message.chat.id, 'hello world, cruel world.', parse_mode='html', reply_markup=markup.markup_main())
-    status = 'user'
+        status = 'user'
     #bot.register_next_step_handler_by_chat_id(user_id, get_additional_message, user_id, status)
-    get_additional_message(message, req_id, status)
+        get_additional_message(message, req_id, status)
 
 
 def get_password_message(message):
