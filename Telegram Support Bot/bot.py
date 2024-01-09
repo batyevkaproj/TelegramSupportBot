@@ -49,6 +49,7 @@ def send_text(message):
     # markup_req = markup_and_value[0]
     # value = markup_and_value[1]
     reqs = core.my_reqs(1, user_id)
+    print(type(reqs))
     print(reqs)
     if not reqs:
         take_new_request = bot.send_message(user_id, 'Введите свой запрос и наши сотрудники скоро с вами свяжутся.', reply_markup=markup.markup_cancel())
