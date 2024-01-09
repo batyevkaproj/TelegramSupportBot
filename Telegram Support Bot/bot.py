@@ -65,9 +65,8 @@ def send_text(message):
         #     else:
         #         bot.send_message(message.chat.id, 'Ваши запросы:', reply_markup=markup_req)
     
-    bot.send_message(message.chat.id, 'hello world, cruel world.', parse_mode='html', reply_markup=markup.markup_main())
+    take_additional_message = bot.send_message(message.chat.id, 'hello world, cruel world.', parse_mode='html', reply_markup=markup.markup_main())
     status = 'wait'
-    take_additional_message = bot.send_message(chat_id=call.message.chat.id, text='Отправьте ваше сообщение, использовав один из доступных типов данных (текст, файлы, фото, видео, аудио, голосовые сообщения)', reply_markup=markup.markup_cancel())
     bot.register_next_step_handler(take_additional_message, get_additional_message, user_id, status)
 
 
