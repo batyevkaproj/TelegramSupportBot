@@ -48,19 +48,18 @@ def send_text(message):
     # markup_and_value = markup.markup_reqs(user_id, 'my_reqs', '1')
     # markup_req = markup_and_value[0]
     # value = markup_and_value[1]
-    reqs = core.my_reqs(1, user_id)
 
+
+    
+    reqs = core.my_reqs(1, user_id)
     for item in reqs:
-        print(item[0])  # Output: (11, 'waiting')
-    print(type(reqs))
-    print(reqs)
+        req_id = item[0]
+
     if not reqs:
         take_new_request = bot.send_message(user_id, 'Введите свой запрос и наши сотрудники скоро с вами свяжутся.', reply_markup=markup.markup_cancel())
 
         bot.clear_step_handler_by_chat_id(user_id)
         bot.register_next_step_handler(take_new_request, get_new_request)
-        status = 'user'
-        bot.register_next_step_handler(take_new_request, get_additional_message, user_id, status)
 
         # elif message.text == '✉️ Мои запросы':
         #     markup_and_value = markup.markup_reqs(user_id, 'my_reqs', '1')
@@ -75,7 +74,7 @@ def send_text(message):
     # take_additional_message = bot.send_message(message.chat.id, 'hello world, cruel world.', parse_mode='html', reply_markup=markup.markup_main())
     status = 'user'
     #bot.register_next_step_handler_by_chat_id(user_id, get_additional_message, user_id, status)
-    get_additional_message(message, user_id, status)
+    get_additional_message(message, req_id, status)
 
 
 def get_password_message(message):
