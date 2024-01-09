@@ -53,7 +53,7 @@ def send_text(message):
 
     print(reqs)
 
-    if not value:
+    if not reqs:
         take_new_request = bot.send_message(user_id, 'Введите свой запрос и наши сотрудники скоро с вами свяжутся.', reply_markup=markup.markup_cancel())
 
         bot.clear_step_handler_by_chat_id(user_id)
