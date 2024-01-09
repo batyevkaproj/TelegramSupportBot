@@ -62,7 +62,7 @@ def send_text(message):
             bot.send_message(message.chat.id, 'Ваши запросы:', reply_markup=markup_req)
     
     else:
-        bot.send_message(message.chat.id, 'Вы возвращены в главное меню.', parse_mode='html', reply_markup=markup.markup_main())
+        bot.send_message(message.chat.id, 'hello world, cruel world.', parse_mode='html', reply_markup=markup.markup_main())
 
 
 def get_password_message(message):
